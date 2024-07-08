@@ -30,50 +30,63 @@ class _HomePageState extends State<HomePage> {
     width = MediaQuery.of(context).size.width;
     size = MediaQuery.of(context).size.longestSide;
 
-    return SafeArea(
-      child: Scaffold(
-        backgroundColor: Color.fromARGB(255, 255, 255, 255),
-        appBar: Responsive.isDesktop(context) || Responsive.isk4Desktop(context)
-            ? null
-            : AppBar(
-                backgroundColor: Color.fromARGB(255, 255, 255, 255),
-                surfaceTintColor: Color.fromARGB(255, 255, 255, 255),
-                leading: Image.asset(
-                  'assets/cd-logo.jpg',
-                  alignment: Alignment.centerLeft,
-                  // width: 100.0,
-                ),
-                leadingWidth: width * .2,
-              ),
-        endDrawer:
-            Responsive.isDesktop(context) || Responsive.isk4Desktop(context)
-                ? null
-                : Drawer(
-                    backgroundColor: Color.fromARGB(255, 255, 255, 255),
-                  ),
-        body: Container(
-          color: Colors.white,
-          child: ListView(
-            children: [
-              Responsive.isDesktop(context) || Responsive.isk4Desktop(context)
-      ?            Header()
-                  : SizedBox(),
-              getStarted(),
-              services(),
-              slider(),
-              testimonials(),
-              testimonialSlider(),
-              aboutUs(),
-              leadership(), leadershipSlider(),
-              contactus(),
-              contactForm(),
-              helpdesk(),
-              blog(),
-              SizedBox(
-                height: 20,
-              )
-            ],
-          ),
+    return Scafold_Dekstop_widget(
+    //   backgroundColor: Color.fromARGB(255, 255, 255, 255),
+    //   appBar:   Responsive.isDesktop(context) || Responsive.isk4Desktop(context)
+    //     ? PreferredSize(
+    //     preferredSize: Size.fromHeight(0),  child: SizedBox()):AppBar(
+    //   backgroundColor: Colors.white,
+    //   elevation: 3,
+    //   surfaceTintColor: Colors.white,
+    //   leading: InkWell(
+    //     onTap: (() {
+    //       Navigator.pushReplacement(
+    //         context,
+    //         MaterialPageRoute(
+    //           builder: (context) => HomePage(),
+    //         ),
+    //       );
+    //     }),
+    //     child: Padding(
+    //       padding: const EdgeInsets.all(8.0),
+    //       child: Image.asset(
+    //         'assets/cd-logo.jpg',
+    //         height: 50.0, alignment: Alignment.centerLeft,
+    //         // width: 100.0,
+    //       ),
+    //     ),
+    //   ),
+    //
+    //   leadingWidth: 200,
+    //   automaticallyImplyLeading: false,
+    // ),
+    // endDrawer: Drawer(
+    //   child: Responsive.isDesktop(context) || Responsive.isk4Desktop(context)
+    //       ? SizedBox(): Mobile_Header(),
+    // ),
+      body: Container(
+        // color: Colors.white,
+        child: ListView(
+          children: [
+            Responsive.isDesktop(context) || Responsive.isk4Desktop(context)? TabsWidget():SizedBox(),
+    //         Responsive.isDesktop(context) || Responsive.isk4Desktop(context)
+    // ?            Scafold_Dekstop_widget()
+    //             : SizedBox(),
+            getStarted(),
+            services(),
+            slider(),
+            testimonials(),
+            testimonialSlider(),
+            aboutUs(),
+            leadership(), leadershipSlider(),
+            contactus(),
+            contactForm(),
+            helpdesk(),
+            blog(),
+            SizedBox(
+              height: 20,
+            )
+          ],
         ),
       ),
     );
@@ -517,7 +530,7 @@ class _HomePageState extends State<HomePage> {
                     }),
                     shape: WidgetStateProperty.all<RoundedRectangleBorder>(
                       RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(0),
+                        borderRadius: BorderRadius.circular(10),
                       ),
                     ),
                   ),
@@ -535,6 +548,9 @@ class _HomePageState extends State<HomePage> {
                             color: Colors.white,
                             letterSpacing: 1)),
                   ),
+                ),
+                SizedBox(
+                  height: 20,
                 ),
               ],
             ),
@@ -631,14 +647,16 @@ class _HomePageState extends State<HomePage> {
       //   viewportFraction: 0.2,
       // ),
       options: CarouselOptions(
-          height: 180.0,
+          height:  Responsive.isDesktop(context) || Responsive.isk4Desktop(context)
+          ?   180.0: height*.15,
           enlargeCenterPage: true,
           autoPlay: true,
           aspectRatio: 16 / 9,
           autoPlayCurve: Curves.fastOutSlowIn,
           enableInfiniteScroll: true,
           autoPlayAnimationDuration: Duration(milliseconds: 800),
-          viewportFraction: 0.2,
+          viewportFraction:Responsive.isDesktop(context) || Responsive.isk4Desktop(context)
+              ?  0.2: 0.5,
           initialPage: 0,
           onPageChanged: (index, reason) {
             setState(() {
@@ -678,10 +696,11 @@ class _HomePageState extends State<HomePage> {
                             color: AppColor.green,
                           )),
                     ]),
-                Row(
+                Row(mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     SizedBox(
-                      width: width * .28,
+                      width:Responsive.isDesktop(context) || Responsive.isk4Desktop(context)
+                          ? width * .28:width *.3,
                       child: Text(
                         "We are very glad to get client review.",
                         style: TextStyle(
@@ -695,21 +714,18 @@ class _HomePageState extends State<HomePage> {
                             fontWeight: FontWeight.bold),
                         textAlign: TextAlign.left,
                       ),
-                    ),
+                    ),SizedBox(width: width*.05,),
                     SizedBox(
-                      width: width * .28,
-                      child: Text(
+                      width:Responsive.isDesktop(context) || Responsive.isk4Desktop(context)
+                          ? width * .28:width *.5,                      child: Text(
                         "Let our success stories highlight why our clients trust us for all their software development queries, quality engineering initiatives and digital transformation implementation.",
                         style: TextStyle(
                           color: Color.fromRGBO(79, 79, 103, 1),
                           fontFamily: 'Arial',
-                          fontSize: Responsive.isDesktop(context) ||
-                                  Responsive.isk4Desktop(context)
-                              ? 16
-                              : 10,
+                          fontSize: 16,
                           letterSpacing: .5,
                         ),
-                        textAlign: TextAlign.center,
+                        textAlign: TextAlign.start,
                       ),
                     ),
                   ],
@@ -724,7 +740,7 @@ class _HomePageState extends State<HomePage> {
     return Container(
       height: Responsive.isDesktop(context) || Responsive.isk4Desktop(context)
           ? 440
-          : 350,
+          : 400,
       width: double.infinity,
       alignment: Alignment.center,
       color: Color.fromRGBO(235, 235, 235, 1),
@@ -765,8 +781,7 @@ class _HomePageState extends State<HomePage> {
                               ),
                               clipBehavior: Clip.antiAlias,
                               elevation: 5.0,
-                              color: Colors.redAccent,
-                            ),
+                             ),
                             SizedBox(
                               height: height * .03,
                             ),
@@ -862,7 +877,8 @@ class _HomePageState extends State<HomePage> {
       child: Image.asset(
         'assets/aboutuss.png',
         alignment: Alignment.center,
-        height: height * .6,
+        height: Responsive.isDesktop(context) || Responsive.isk4Desktop(context)
+          ? height*.6:   height * .3,
       ),
     );
   }
@@ -900,8 +916,8 @@ class _HomePageState extends State<HomePage> {
                 Row(
                   children: [
                     SizedBox(
-                      width: width * .28,
-                      child: Text(
+                      width:Responsive.isDesktop(context) || Responsive.isk4Desktop(context)
+                          ? width * .28:width *.3,                         child: Text(
                         "Our small team with big ideas",
                         style: TextStyle(
                             fontFamily: 'Arial',
@@ -914,21 +930,18 @@ class _HomePageState extends State<HomePage> {
                             fontWeight: FontWeight.bold),
                         textAlign: TextAlign.left,
                       ),
-                    ),
+                    ),SizedBox(width: width*.05,),
                     SizedBox(
-                      width: width * .28,
-                      child: Text(
+                      width:Responsive.isDesktop(context) || Responsive.isk4Desktop(context)
+                          ? width * .28:width *.5,                         child: Text(
                         "Meet the CodeElan Technologies leadership team who envisioned building one of the finest custom software development, automation services and superior Quality engineering capabilities for global enterprises.",
                         style: TextStyle(
                           color: Color.fromRGBO(79, 79, 103, 1),
                           fontFamily: 'Arial',
-                          fontSize: Responsive.isDesktop(context) ||
-                                  Responsive.isk4Desktop(context)
-                              ? 16
-                              : 10,
+                          fontSize: 16,
                           letterSpacing: .5,
                         ),
-                        textAlign: TextAlign.center,
+                        textAlign: TextAlign.start,
                       ),
                     ),
                   ],
@@ -943,7 +956,7 @@ class _HomePageState extends State<HomePage> {
     return Container(
       height: Responsive.isDesktop(context) || Responsive.isk4Desktop(context)
           ? 440
-          : 350,
+          : 400,
       width: double.infinity,
       alignment: Alignment.center,
       color: Color.fromRGBO(235, 235, 235, 1),
@@ -958,7 +971,7 @@ class _HomePageState extends State<HomePage> {
                   width: Responsive.isDesktop(context) ||
                           Responsive.isk4Desktop(context)
                       ? width * .2
-                      : width * .3,
+                      : width * .8,
                   padding: const EdgeInsets.all(15),
                   child: Card(
                     color: Colors.white,
@@ -1276,7 +1289,7 @@ class _HomePageState extends State<HomePage> {
                 }),
                 shape: WidgetStateProperty.all<RoundedRectangleBorder>(
                   RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(0),
+                    borderRadius: BorderRadius.circular(10),
                   ),
                 ),
               ),
@@ -1314,13 +1327,14 @@ class _HomePageState extends State<HomePage> {
               Responsive.isDesktop(context) || Responsive.isk4Desktop(context)
                   ? width * .1
                   : width * .05,
-          // top: MediaQuery.of(context).size.height * .05,
-          // bottom: MediaQuery.of(context).size.width * .1s,
+          top: MediaQuery.of(context).size.height * .05,
+          bottom: MediaQuery.of(context).size.width * .1,
         ),
         width: 100,
         alignment: Alignment.center,
         // color: Color.fromRGBO(235, 235, 235, 1),
-        child: Row(
+        child: Responsive.isDesktop(context) || Responsive.isk4Desktop(context)
+            ? Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Image.asset("phone-image.png"),
@@ -1387,13 +1401,83 @@ class _HomePageState extends State<HomePage> {
               height: height * .2,
             )
           ],
+        ):Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Row(
+              children: [
+                Image.asset("phone-image.png"),  SizedBox(
+                  width: width * .02,
+                ),
+                SizedBox(
+                  width: width * .5,
+                  child: Text(
+                    "Leverage and amplify your product value by cooperating with CodeElan Technologies. Collaborate with our innovative custom software development company!",
+                    style: TextStyle(
+                      color: Color.fromRGBO(79, 79, 103, 1),
+                      fontFamily: 'Arial',
+                      fontSize: Responsive.isDesktop(context) ||
+                          Responsive.isk4Desktop(context)
+                          ? 16
+                          : 10,
+                      letterSpacing: .5,
+                    ),
+                    textAlign: TextAlign.left,
+                  ),
+                ),
+              ],
+            ),
+
+            SizedBox(
+              height: height * .05,
+            ),
+            DottedDashedLine(
+              height: 20,
+              width: 200,
+              axis: Axis.horizontal,
+              dashHeight: 8,
+              dashColor: Colors.orange,
+            ),
+            SizedBox(
+              width: width * .02,
+            ),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  "Help Desk 24h/7",
+                  style: TextStyle(
+                    color: AppColor.green,
+                    fontFamily: 'Arial',
+                    fontSize: 16,
+                    letterSpacing: .5,
+                  ),
+                ),
+                Text(
+                  "8484914105",
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontFamily: 'Arial',
+                    fontWeight: FontWeight.bold,
+                    fontSize: Responsive.isDesktop(context) ||
+                        Responsive.isk4Desktop(context)
+                        ? 30
+                        : 25,
+                    letterSpacing: .5,
+                  ),
+                ),
+              ],
+            ),
+
+          ],
         ));
   }
 
   Widget blog() {
     return Container(
         // width: 100,
-        alignment: Alignment.center,
+        alignment: Responsive.isDesktop(context) || Responsive.isk4Desktop(context)
+            ? Alignment.center:Alignment.centerLeft,
         color: Color.fromRGBO(235, 235, 235, 1),
         padding: EdgeInsets.all(5),
         child: Row(
@@ -1423,7 +1507,7 @@ class _HomePageState extends State<HomePage> {
                 Row(
                   children: [
                     SizedBox(
-                      width: width * .2,
+                      width: width * .3,
                       child: Text(
                         "Insights From Experts.",
                         style: TextStyle(
@@ -1436,15 +1520,15 @@ class _HomePageState extends State<HomePage> {
                             letterSpacing: .5,
                             fontWeight: FontWeight.bold),
                         textAlign: TextAlign.left,
-                        maxLines: 2,
+                        maxLines: 4,
                       ),
                     ),
                     SizedBox(
                       width: width * .02,
                     ),
                     SizedBox(
-                      width: width * .4,
-                      child: Text(
+                      width:Responsive.isDesktop(context) || Responsive.isk4Desktop(context)
+                          ? width * .28:width *.5,                           child: Text(
                         "The must read collection of blogs on software development and testing featuring articles on API testing tools, test automation, achieving excellence in software engineering and more.",
                         style: TextStyle(
                           color: Color.fromRGBO(79, 79, 103, 1),

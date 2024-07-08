@@ -25,40 +25,49 @@ class _AboutusState extends State<Aboutus> {
     width = MediaQuery.of(context).size.width;
     size = MediaQuery.of(context).size.longestSide;
 
-    return SafeArea(
-      child: Scaffold(
-        backgroundColor: Colors.white,
-        body: ListView(
-          children: [
-            Responsive.isDesktop(context) || Responsive.isk4Desktop(context)
-                ? Header()
-                : SizedBox(),
-            image(),
-            weAre(),
-            leadershipSlider(),
-            ourStory(),
-            quotesClient(),
-            SizedBox(
-              height: height * .05,
-            ),
-            Image.asset('about-gap.png'),
-            SizedBox(
-              height: height * .05,
-            ),
-            clients()
-          ],
-        ),
+    return Scafold_Dekstop_widget(
+      // backgroundColor: Colors.white,
+      body: ListView(
+        children: [
+          Responsive.isDesktop(context) || Responsive.isk4Desktop(context)?TabsWidget():SizedBox(),
+          // Responsive.isDesktop(context) || Responsive.isk4Desktop(context)
+          //     ? Scafold_Dekstop_widget()
+          //     : SizedBox(),
+          image(),
+          weAre(),
+          leadershipSlider(),
+          ourStory(),
+          quotesClient(),
+          SizedBox(
+            height: height * .05,
+          ),
+          Image.asset('about-gap.png'),
+          SizedBox(
+            height: height * .05,
+          ),
+          clients()
+        ],
       ),
     );
   }
 
   Widget image() {
-    return Container(
-      child: Image.asset(
-        "aboutuscover.jpg",
-        height: 300,
-        fit: BoxFit.cover,
-      ),
+    return   Stack(alignment: Alignment.center,
+      children: [
+        Image.asset(
+          "about-banner.png",
+          height: 250,width: width,
+          fit: BoxFit.cover,
+          color: Colors.black,
+          opacity: const AlwaysStoppedAnimation(.5),
+          colorBlendMode: BlendMode.softLight,
+        ),
+        Text(
+          "About Us",
+          style: TextStyle(
+            color: Colors.white, fontSize: 40,
+            fontWeight: FontWeight.w800,),
+        ),            ],
     );
   }
 
@@ -71,7 +80,7 @@ class _AboutusState extends State<Aboutus> {
         right: Responsive.isDesktop(context) || Responsive.isk4Desktop(context)
             ? width * .1
             : width * .02,
-        top: 0,
+        top: height *.1,
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -79,9 +88,9 @@ class _AboutusState extends State<Aboutus> {
           Text('We are Engineering- lead Technology Services company',
               style: TextStyle(
                   fontWeight: FontWeight.bold,
-                  fontSize: size * .02,
+                  fontSize:25,
                   height: height * .002,
-                  letterSpacing: 1)),
+                  letterSpacing: 1)),SizedBox(height: height*.05,),
           Text(
             'Established in 2016, CodeElan is a leading technology services company committed to delivering exceptional results for our clients. With our comprehensive “Adopt-Build-Operate” services, we support businesses at every stage of their journey.\n'
             '\nOur agile methodology ensures seamless integration and regular communication with our clients, making them a top priority.\n'
@@ -90,7 +99,7 @@ class _AboutusState extends State<Aboutus> {
             'Continuous learning\n'
             'Agile and Nimble\n',
             style: TextStyle(
-                fontSize: size * .01, height: height * .002, letterSpacing: 1),
+                fontSize:16, height: height * .002, letterSpacing: 1),
           ),
           RichText(
               textAlign: TextAlign.left,
@@ -99,7 +108,7 @@ class _AboutusState extends State<Aboutus> {
                   style: TextStyle(
                     fontFamily: 'Arial',
                     color: Colors.black,
-                    fontSize: size * .01,
+                    fontSize:16,
                     height: height * .002,
                     letterSpacing: 1,
                   ),
@@ -109,7 +118,7 @@ class _AboutusState extends State<Aboutus> {
                         style: TextStyle(
                           fontFamily: 'Arial',
                           color: AppColor.primary,
-                          fontSize: size * .01,
+                          fontSize: 16,
                           height: height * .002,
                           letterSpacing: 1,
                         )),
@@ -133,7 +142,7 @@ class _AboutusState extends State<Aboutus> {
                   style: TextStyle(
                     fontFamily: 'Arial',
                     color: Colors.black,
-                    fontSize: size * .01,
+                    fontSize: 16,
                     letterSpacing: 1,
                     height: height * .002,
                   ),
@@ -143,7 +152,7 @@ class _AboutusState extends State<Aboutus> {
                         style: TextStyle(
                           fontFamily: 'Arial',
                           color: AppColor.primary,
-                          fontSize: size * .01,
+                          fontSize: 16,
                           height: height * .002,
                           letterSpacing: 1,
                         )),
@@ -152,18 +161,18 @@ class _AboutusState extends State<Aboutus> {
               'Comprehensive IT solutions to transform your business digitally!',
               style: TextStyle(
                   fontWeight: FontWeight.bold,
-                  fontSize: size * .02,
+                  fontSize: 25,
                   height: height * .002,
                   letterSpacing: 1)),
           Text(
             'CodeElan Technology, founded in 2016 is a leading IT software development company known for its innovative and robust digital solutions. We help you evolve your business into a profitable venture by using the unrivaled experience of our highly qualified product development team. Our huge pool of skilled professionals for Machine Learning, Cloud Computing, IoT, Artificial Intelligence, and more help you expand your web and mobile app development customer base.',
             style: TextStyle(
-                fontSize: size * .01, height: height * .002, letterSpacing: 1),
-          ),
+                fontSize: 16, height: height * .002, letterSpacing: 1),
+          ),SizedBox(height: height*.08 ,),
           Text('Why CodeElan Technology?',
               style: TextStyle(
                   fontWeight: FontWeight.bold,
-                  fontSize: size * .02,
+                  fontSize: 25,
                   height: height * .002,
                   letterSpacing: 1)),
           Image.asset('Why-About-us-banner.png'),
@@ -173,13 +182,13 @@ class _AboutusState extends State<Aboutus> {
           Text('Our small team with big ideas',
               style: TextStyle(
                   fontWeight: FontWeight.bold,
-                  fontSize: size * .02,
+                  fontSize: 25,
                   height: height * .002,
                   letterSpacing: 1)),
           Text(
             'Meet the CodeElan Technologies leadership team who envisioned building one of the finest custom software development, automation services and superior Quality engineering capabilities for global enterprises.',
             style: TextStyle(
-                fontSize: size * .01, height: height * .002, letterSpacing: 1),
+                fontSize: 16, height: height * .002, letterSpacing: 1),
           ),
         ],
       ),
@@ -193,7 +202,7 @@ class _AboutusState extends State<Aboutus> {
         // scrollDirection: Axis.vertical,
         itemCount: leadershipData.length,
         itemBuilder: (BuildContext context, int index) => Padding(
-              padding: const EdgeInsets.only(bottom: 100),
+              padding: const EdgeInsets.only(bottom: 50,top: 50),
               child: Container(
                 child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -241,7 +250,7 @@ class _AboutusState extends State<Aboutus> {
                           fontSize: Responsive.isDesktop(context) ||
                                   Responsive.isk4Desktop(context)
                               ? 16
-                              : 10,
+                              : 12,
                           letterSpacing: .5,
                         ),
                         textAlign: TextAlign.center,
@@ -287,13 +296,13 @@ class _AboutusState extends State<Aboutus> {
           Text('The Story of CodeElan',
               style: TextStyle(
                   fontWeight: FontWeight.bold,
-                  fontSize: size * .02,
+                  fontSize:25,
                   height: height * .002,
                   letterSpacing: 1)),
           Text(
             "It really takes a lot to become a successful entrepreneur. This is how we started and growing year by year.",
             style: TextStyle(
-                fontSize: size * .01, height: height * .002, letterSpacing: 1),
+                fontSize: 16, height: height * .002, letterSpacing: 1),
           ),
           SizedBox(
             height: height * .05,
@@ -301,14 +310,14 @@ class _AboutusState extends State<Aboutus> {
           Text('MAY 2016',
               style: TextStyle(
                   fontWeight: FontWeight.bold,
-                  fontSize: size * .02,
+                  fontSize: 25,
                   color: AppColor.primary,
                   height: height * .002,
                   letterSpacing: 1)),
           Text(
             "The night of the biggest enlightenment",
             style: TextStyle(
-                fontSize: size * .01, height: height * .002, letterSpacing: 1),
+                fontSize: 16, height: height * .002, letterSpacing: 1),
           ),
           SizedBox(
             height: height * .03,
@@ -316,14 +325,14 @@ class _AboutusState extends State<Aboutus> {
           Text('2017',
               style: TextStyle(
                   fontWeight: FontWeight.bold,
-                  fontSize: size * .02,
+                  fontSize: 25,
                   color: AppColor.primary,
                   height: height * .002,
                   letterSpacing: 1)),
           Text(
             "Achieving new milestone in Device and Virtualization Testing",
             style: TextStyle(
-                fontSize: size * .01, height: height * .002, letterSpacing: 1),
+                fontSize: 16, height: height * .002, letterSpacing: 1),
           ),
           SizedBox(
             height: height * .03,
@@ -331,14 +340,14 @@ class _AboutusState extends State<Aboutus> {
           Text('2018',
               style: TextStyle(
                   fontWeight: FontWeight.bold,
-                  fontSize: size * .02,
+                  fontSize: 25,
                   color: AppColor.primary,
                   height: height * .002,
                   letterSpacing: 1)),
           Text(
             "Creating Global Footprint",
             style: TextStyle(
-                fontSize: size * .01, height: height * .002, letterSpacing: 1),
+                fontSize: 16, height: height * .002, letterSpacing: 1),
           ),
           SizedBox(
             height: height * .03,
@@ -346,14 +355,14 @@ class _AboutusState extends State<Aboutus> {
           Text('2019',
               style: TextStyle(
                   fontWeight: FontWeight.bold,
-                  fontSize: size * .02,
+                  fontSize: 25,
                   color: AppColor.primary,
                   height: height * .002,
                   letterSpacing: 1)),
           Text(
             "Getting Started with Performance Testing",
             style: TextStyle(
-                fontSize: size * .01, height: height * .002, letterSpacing: 1),
+                fontSize: 16, height: height * .002, letterSpacing: 1),
           ),
           SizedBox(
             height: height * .03,
@@ -361,14 +370,14 @@ class _AboutusState extends State<Aboutus> {
           Text('2020',
               style: TextStyle(
                   fontWeight: FontWeight.bold,
-                  fontSize: size * .02,
+                  fontSize: 25,
                   color: AppColor.primary,
                   height: height * .002,
                   letterSpacing: 1)),
           Text(
             "Remote Performance Testing for International clients",
             style: TextStyle(
-                fontSize: size * .01, height: height * .002, letterSpacing: 1),
+                fontSize:16, height: height * .002, letterSpacing: 1),
           ),
           SizedBox(
             height: height * .03,
@@ -376,14 +385,14 @@ class _AboutusState extends State<Aboutus> {
           Text('2021',
               style: TextStyle(
                   fontWeight: FontWeight.bold,
-                  fontSize: size * .02,
+                  fontSize: 25,
                   color: AppColor.primary,
                   height: height * .002,
                   letterSpacing: 1)),
           Text(
             "Setting new benchmarks in Development Services and Product Development",
             style: TextStyle(
-                fontSize: size * .01, height: height * .002, letterSpacing: 1),
+                fontSize: 16, height: height * .002, letterSpacing: 1),
           ),
           SizedBox(
             height: height * .03,
@@ -391,14 +400,14 @@ class _AboutusState extends State<Aboutus> {
           Text('March 2022',
               style: TextStyle(
                   fontWeight: FontWeight.bold,
-                  fontSize: size * .02,
+                  fontSize: 25,
                   color: AppColor.primary,
                   height: height * .002,
                   letterSpacing: 1)),
           Text(
             "New Milestones in Custom App, Product Development and Engineering Solutions",
             style: TextStyle(
-                fontSize: size * .01, height: height * .002, letterSpacing: 1),
+                fontSize: 16, height: height * .002, letterSpacing: 1),
           ),
           SizedBox(
             height: height * .03,
@@ -406,14 +415,14 @@ class _AboutusState extends State<Aboutus> {
           Text('June 2022',
               style: TextStyle(
                   fontWeight: FontWeight.bold,
-                  fontSize: size * .02,
+                  fontSize: 25,
                   color: AppColor.primary,
                   height: height * .002,
                   letterSpacing: 1)),
           Text(
             "Grabbed biggest opportunity in Oracle Apache Tomcat Application Server",
             style: TextStyle(
-                fontSize: size * .01, height: height * .002, letterSpacing: 1),
+                fontSize: 16, height: height * .002, letterSpacing: 1),
           ),
           SizedBox(
             height: height * .03,
@@ -421,14 +430,14 @@ class _AboutusState extends State<Aboutus> {
           Text('Sep 2022',
               style: TextStyle(
                   fontWeight: FontWeight.bold,
-                  fontSize: size * .02,
+                  fontSize: 25,
                   color: AppColor.primary,
                   height: height * .002,
                   letterSpacing: 1)),
           Text(
             "Successful partnership for Recruitment globally",
             style: TextStyle(
-                fontSize: size * .01, height: height * .002, letterSpacing: 1),
+                fontSize: 16, height: height * .002, letterSpacing: 1),
           ),
           SizedBox(
             height: height * .05,
@@ -443,7 +452,7 @@ class _AboutusState extends State<Aboutus> {
       // height: Responsive.isDesktop(context) || Responsive.isk4Desktop(context)
       //     ? 440
       //     : 350,
-      width: 1000,
+      width:  Responsive.isDesktop(context) || Responsive.isk4Desktop(context)?1000:50,
       alignment: Alignment.center,
       // color: Color.fromRGBO(235, 235, 235, 1),
       padding: EdgeInsets.all(20),
@@ -497,7 +506,7 @@ class _AboutusState extends State<Aboutus> {
                                 fontSize: Responsive.isDesktop(context) ||
                                         Responsive.isk4Desktop(context)
                                     ? 16
-                                    : 10,
+                                    : 12,
                                 letterSpacing: .5,
                               ),
                               textAlign: TextAlign.center,
@@ -530,7 +539,7 @@ class _AboutusState extends State<Aboutus> {
                                 fontSize: Responsive.isDesktop(context) ||
                                         Responsive.isk4Desktop(context)
                                     ? 16
-                                    : 10,
+                                    : 12,
                                 letterSpacing: .5,
                               ),
                               textAlign: TextAlign.center,
@@ -545,12 +554,12 @@ class _AboutusState extends State<Aboutus> {
                   ),
                   Positioned(
                     top: -10,
-                    left: 380,
+                    left: Responsive.isDesktop(context) || Responsive.isk4Desktop(context)? 380:100,
                     child: Image.asset(
                       alignment: Alignment.center,
                       "get-quote.png",
                       color: Colors.black,
-                      height: 60,
+                      height:  Responsive.isDesktop(context) || Responsive.isk4Desktop(context)?60:50,
                     ),
                   ),
                 ]),
@@ -581,22 +590,22 @@ class _AboutusState extends State<Aboutus> {
       padding: EdgeInsets.only(
         left: Responsive.isDesktop(context) || Responsive.isk4Desktop(context)
             ? width * .1
-            : width * .02,
+            : width * .05,
         right: Responsive.isDesktop(context) || Responsive.isk4Desktop(context)
             ? width * .1
-            : width * .02,
-        top: 0,
+            : width * .05,
+        top: 10,
       ),
       child: GridView.builder(
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 4,
-            childAspectRatio: 3 / 1,
+            crossAxisCount:  Responsive.isDesktop(context) || Responsive.isk4Desktop(context)?4:3,
+            childAspectRatio:  Responsive.isDesktop(context) || Responsive.isk4Desktop(context)?3 / 1:2/1,
             crossAxisSpacing: 10,
             mainAxisSpacing: 10),
         itemBuilder: (_, index) => Card(
             color: Colors.white,
             child: Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: const EdgeInsets.all(1),
               child: Image.asset(clientList[index].image),
             )),
         itemCount: clientList.length,
