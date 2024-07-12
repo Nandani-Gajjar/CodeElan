@@ -1,13 +1,9 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
-import 'package:carousel_slider/carousel_slider.dart';
-import 'package:codeelan/Utils/Responsive.dart';
 import 'package:codeelan/DataObjects/LeadersListData.dart';
 import 'package:codeelan/Utils/widgets.dart';
 import 'package:dotted_dashed_line/dotted_dashed_line.dart';
-
 import 'package:flutter/material.dart';
-
 import '../DataObjects/TestimonialListData.dart';
+import '../Utils/Responsive.dart';
 import '../Utils/app_colors.dart';
 
 class HomePage extends StatefulWidget {
@@ -74,7 +70,7 @@ class _HomePageState extends State<HomePage> {
     //             : SizedBox(),
             getStarted(),
             services(),
-            slider(),
+            CompaniesSliderWidget(),
             testimonials(),
             testimonialSlider(),
             aboutUs(),
@@ -618,53 +614,6 @@ class _HomePageState extends State<HomePage> {
         ));
   }
 
-  List<Widget> carouselItems = [
-    Image.asset('assets/ACMEMinds-logo.png'),
-    Image.asset('assets/Idea-bridge-Logo.png'),
-    Image.asset('assets/LoadShare-Logo.png'),
-    Image.asset('assets/ParentPayGroup.png'),
-    Image.asset('assets/PlusInnovation-Logo.png'),
-    Image.asset('assets/SunPower-Logo.png'),
-    Image.asset('assets/Unique-Solutions.png'),
-    Image.asset('assets/VoniGo-Logo.png'),
-  ];
-  int _current = 0;
-
-  CarouselController controller = CarouselController();
-
-  Widget slider() {
-    return CarouselSlider(
-      carouselController: controller,
-      items: carouselItems ?? List.empty(),
-      // options: CarouselOptions(
-      //   height: 120.0,
-      //   enlargeCenterPage: true, scrollPhysics: AlwaysScrollableScrollPhysics(),
-      //   autoPlay: true,
-      //   aspectRatio: 16 / 9,
-      //   autoPlayCurve: Curves.fastOutSlowIn,
-      //   enableInfiniteScroll: true,
-      //   autoPlayAnimationDuration: Duration(milliseconds: 800),
-      //   viewportFraction: 0.2,
-      // ),
-      options: CarouselOptions(
-          height:  Responsive.isDesktop(context) || Responsive.isk4Desktop(context)
-          ?   180.0: height*.15,
-          enlargeCenterPage: true,
-          autoPlay: true,
-          aspectRatio: 16 / 9,
-          autoPlayCurve: Curves.fastOutSlowIn,
-          enableInfiniteScroll: true,
-          autoPlayAnimationDuration: Duration(milliseconds: 800),
-          viewportFraction:Responsive.isDesktop(context) || Responsive.isk4Desktop(context)
-              ?  0.2: 0.5,
-          initialPage: 0,
-          onPageChanged: (index, reason) {
-            setState(() {
-              _current = index;
-            });
-          }),
-    );
-  }
 
   Widget testimonials() {
     return Container(

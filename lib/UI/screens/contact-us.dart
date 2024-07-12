@@ -1,7 +1,4 @@
-import 'package:carousel_slider/carousel_slider.dart';
-import 'package:codeelan/UI/homePage.dart';
 import 'package:flutter/material.dart';
-
 import '../../Utils/Responsive.dart';
 import '../../Utils/app_colors.dart';
 import '../../Utils/widgets.dart';
@@ -101,7 +98,7 @@ class _ContactusState extends State<Contactus> {
               ],
             ),
             form(),
-            slider()
+            CompaniesSliderWidget()
           ],
         ),
       ),
@@ -871,58 +868,6 @@ class _ContactusState extends State<Contactus> {
             )
           ],
         ),
-      ),
-    );
-  }
-
-  List<Widget> carouselItems = [
-    Image.asset('assets/ACMEMinds-logo.png'),
-    Image.asset('assets/Idea-bridge-Logo.png'),
-    Image.asset('assets/LoadShare-Logo.png'),
-    Image.asset('assets/ParentPayGroup.png'),
-    Image.asset('assets/PlusInnovation-Logo.png'),
-    Image.asset('assets/SunPower-Logo.png'),
-    Image.asset('assets/Unique-Solutions.png'),
-    Image.asset('assets/VoniGo-Logo.png'),
-  ];
-  int _current = 0;
-
-  CarouselController controller = CarouselController();
-
-  Widget slider() {
-    return Container(
-      color: Colors.white,
-      child: CarouselSlider(
-        carouselController: controller,
-        items: carouselItems ?? List.empty(),
-        // options: CarouselOptions(
-        //   height: 120.0,
-        //   enlargeCenterPage: true, scrollPhysics: AlwaysScrollableScrollPhysics(),
-        //   autoPlay: true,
-        //   aspectRatio: 16 / 9,
-        //   autoPlayCurve: Curves.fastOutSlowIn,
-        //   enableInfiniteScroll: true,
-        //   autoPlayAnimationDuration: Duration(milliseconds: 800),
-        //   viewportFraction: 0.2,
-        // ),
-        options: CarouselOptions(
-            height: 150.0,
-            enlargeCenterPage: true,
-            autoPlay: true,
-            aspectRatio: 16 / 9,
-            autoPlayCurve: Curves.fastOutSlowIn,
-            enableInfiniteScroll: true,
-            autoPlayAnimationDuration: Duration(milliseconds: 800),
-            viewportFraction:
-                Responsive.isDesktop(context) || Responsive.isk4Desktop(context)
-                    ? 0.2
-                    : 0.4,
-            initialPage: 0,
-            onPageChanged: (index, reason) {
-              setState(() {
-                _current = index;
-              });
-            }),
       ),
     );
   }

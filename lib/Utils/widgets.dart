@@ -1,15 +1,16 @@
 import 'dart:developer';
 
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:codeelan/UI/homePage.dart';
+import 'package:codeelan/UI/screens/Services/AdoptCloudCategories/BuildCloudFoundation.dart';
+import 'package:codeelan/UI/screens/Services/AdoptCloudCategories/CLoudMigration.dart';
+import 'package:codeelan/UI/screens/Services/AdoptCloudCategories/KubernetAdoption.dart';
 import 'package:codeelan/UI/screens/Services/adopt_cloud.dart';
 import 'package:codeelan/UI/screens/aboutUs.dart';
 import 'package:codeelan/UI/screens/contact-us.dart';
 import 'package:flutter/material.dart';
-import 'package:hover_menu/hover_menu.dart';
-import 'package:hover_menu/hover_menu_controller.dart';
-
+import '../UI/screens/Services/BuildInCloud.dart';
 import '../UI/screens/Services/service.dart';
-import '../main.dart';
 import 'Responsive.dart';
 import 'app_colors.dart';
 
@@ -165,13 +166,13 @@ class _TabsWidgetState extends State<TabsWidget> {
                         child: Text('Mail us for help:',
                             style: TextStyle(
                                 fontWeight: FontWeight.bold,
-                                fontSize: 17,
+                                fontSize: 16,
                                 letterSpacing: 1)),
                       ),
                       Container(
                         child: Text('info@codeelan.com',
                             style: TextStyle(
-                                fontSize: 15,
+                                fontSize: 14,
                                 color: Colors.grey.shade600,
                                 letterSpacing: 1)),
                       ),
@@ -356,7 +357,7 @@ class _TabsWidgetState extends State<TabsWidget> {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => ServicePage()));
+                                    builder: (context) => BuildCloudService()));
                           },
                           style: ButtonStyle(
                             padding: WidgetStateProperty.all<EdgeInsets>(
@@ -738,19 +739,19 @@ class _TabsWidgetState extends State<TabsWidget> {
                 },
                 style: ButtonStyle(
                   overlayColor: WidgetStateColor.resolveWith(
-                          (states) => Colors.transparent),
+                      (states) => Colors.transparent),
                   shape: WidgetStateProperty.all<RoundedRectangleBorder>(
                     RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(0),
                     ),
                   ),
                   backgroundColor: WidgetStateProperty.resolveWith<Color>(
-                          (Set<WidgetState> states) {
-                        if (states.contains(WidgetState.hovered)) {
-                          return Colors.green;
-                        }
-                        return const Color.fromARGB(255, 3, 8, 61);
-                      }),
+                      (Set<WidgetState> states) {
+                    if (states.contains(WidgetState.hovered)) {
+                      return Colors.green;
+                    }
+                    return const Color.fromARGB(255, 3, 8, 61);
+                  }),
                 ),
                 child: Container(
                   alignment: Alignment.center,
@@ -772,19 +773,19 @@ class _TabsWidgetState extends State<TabsWidget> {
                 },
                 style: ButtonStyle(
                   overlayColor: WidgetStateColor.resolveWith(
-                          (states) => Colors.transparent),
+                      (states) => Colors.transparent),
                   shape: WidgetStateProperty.all<RoundedRectangleBorder>(
                     RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(0),
                     ),
                   ),
                   backgroundColor: WidgetStateProperty.resolveWith<Color>(
-                          (Set<WidgetState> states) {
-                        if (states.contains(WidgetState.hovered)) {
-                          return Colors.green;
-                        }
-                        return const Color.fromARGB(255, 3, 8, 61);
-                      }),
+                      (Set<WidgetState> states) {
+                    if (states.contains(WidgetState.hovered)) {
+                      return Colors.green;
+                    }
+                    return const Color.fromARGB(255, 3, 8, 61);
+                  }),
                 ),
                 child: Container(
                   alignment: Alignment.center,
@@ -923,98 +924,588 @@ class _Mobile_HeaderState extends State<Mobile_Header> {
                 ),
               ),
             ),
-            _expansionTiles(context, "Services", [
-              _childExpansionTiles(
-                  context,
-                  "Adopt Cloud",
-                  // height: 9,
-                  [
-                    Text('Adopt Cloud', style: TextStyle(fontSize: 18)),
+            Theme(
+              data:
+                  Theme.of(context).copyWith(dividerColor: Colors.transparent),
+              child: ExpansionTile(
+                  tilePadding: EdgeInsets.only(
+                      left: 20, right: 20, top: 0.001, bottom: 0.001),
+                  // childrenPadding: EdgeInsets.only(left: 20,right: 20,top: 0.001,bottom: 0.001),
+                  title: InkWell(
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => ServicePage()));
+                      },
+                      child: Text(
+                        'Services',
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      )),
+                  trailing: Container(
+                      decoration: BoxDecoration(
+                          border: Border.all(color: AppColor.lightGrey)),
+                      child: Padding(
+                        padding: const EdgeInsets.all(5),
+                        child: Icon(
+                          Icons.arrow_forward_ios,
+                          size: 15,
+                        ),
+                      )),
+                  children: <Widget>[
+                    GestureDetector(
+                      child: ExpansionTile(
+                        title: Text('Adopt Cloud'),
+                        trailing: Container(
+                            decoration: BoxDecoration(
+                                border: Border.all(color: AppColor.lightGrey)),
+                            child: Padding(
+                              padding: const EdgeInsets.all(5),
+                              child: Icon(
+                                Icons.arrow_forward_ios,
+                                size: 15,
+                              ),
+                            )),
+                        children: [
+                          GestureDetector(
+                            child: Container(
+                                width: 210,
+                                padding: const EdgeInsets.all(5),
+                                color: Colors.white,
+                                alignment: Alignment.centerLeft,
+                                child: Text("Build Cloud Foundation")),
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          BuildCloudFoundation()));
+                            },
+                          ),
+                          GestureDetector(
+                            child: Container(
+                                width: 210,
+                                padding: const EdgeInsets.all(5),
+                                color: Colors.white,
+                                alignment: Alignment.centerLeft,
+                                child: Text("Cloud Migration")),
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => CloudMigration()));
+                            },
+                          ),
+                          GestureDetector(
+                            child: Container(
+                                width: 210,
+                                padding: const EdgeInsets.all(5),
+                                color: Colors.white,
+                                alignment: Alignment.centerLeft,
+                                child: Text("Kubernetes Adoption")),
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          KubernetAdoption()));
+                            },
+                          ),
+                        ],
+                      ),
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => AdoptCloudUI()));
+                      },
+                    ),
+                    GestureDetector(
+                      child: ExpansionTile(
+                        title: Text('Build in Cloud'),
+                        trailing: Container(
+                            decoration: BoxDecoration(
+                                border: Border.all(color: AppColor.lightGrey)),
+                            child: Padding(
+                              padding: const EdgeInsets.all(5),
+                              child: Icon(
+                                Icons.arrow_forward_ios,
+                                size: 15,
+                              ),
+                            )),
+                        children: [
+                          GestureDetector(
+                            child: Container(
+                                width: 210,
+                                padding: const EdgeInsets.all(5),
+                                color: Colors.white,
+                                alignment: Alignment.centerLeft,
+                                child: Text("Product Development")),
+                            onTap: () {
+                              // Navigator.push(
+                              //     context,
+                              //     MaterialPageRoute(
+                              //         builder: (context) =>
+                              //             BuildCloudFoundation()));
+                            },
+                          ),
+                          GestureDetector(
+                            child: Container(
+                                width: 210,
+                                padding: const EdgeInsets.all(5),
+                                color: Colors.white,
+                                alignment: Alignment.centerLeft,
+                                child: Text("DevOps")),
+                            onTap: () {
+                              // Navigator.push(
+                              //     context,
+                              //     MaterialPageRoute(
+                              //         builder: (context) => CloudMigration()));
+                            },
+                          ),
+                          GestureDetector(
+                            child: Container(
+                                width: 210,
+                                padding: const EdgeInsets.all(5),
+                                color: Colors.white,
+                                alignment: Alignment.centerLeft,
+                                child: Text("Testing Automation")),
+                            onTap: () {
+                              // Navigator.push(
+                              //     context,
+                              //     MaterialPageRoute(
+                              //         builder: (context) =>
+                              //             KubernetAdoption()));
+                            },
+                          ),
+                        ],
+                      ),
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => BuildCloudService()));
+                      },
+                    ),
                   ]),
-              _childExpansionTiles(
-                  context,
-                  "Built in Cloud",
-                  // height: 9,
-                  [
-                    Text('Adopt Cloud', style: TextStyle(fontSize: 18)),
+            ),
+            Divider(
+              color: AppColor.lightGrey,
+            ),
+            Theme(
+              data:
+                  Theme.of(context).copyWith(dividerColor: Colors.transparent),
+              child: ExpansionTile(
+                  tilePadding: EdgeInsets.only(
+                      left: 20, right: 20, top: 0.001, bottom: 0.001),
+                  title: InkWell(
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => ServicePage()));
+                      },
+                      child: Text(
+                        'Solution',
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      )),
+                  trailing: Container(
+                      decoration: BoxDecoration(
+                          border: Border.all(color: AppColor.lightGrey)),
+                      child: Padding(
+                        padding: const EdgeInsets.all(5),
+                        child: Icon(
+                          Icons.arrow_forward_ios,
+                          size: 15,
+                        ),
+                      )),
+                  children: <Widget>[
+                    GestureDetector(
+                      child: ExpansionTile(
+                        title: Text('Adopt Cloud'),
+                        trailing: Container(
+                            decoration: BoxDecoration(
+                                border: Border.all(color: AppColor.lightGrey)),
+                            child: Padding(
+                              padding: const EdgeInsets.all(5),
+                              child: Icon(
+                                Icons.arrow_forward_ios,
+                                size: 15,
+                              ),
+                            )),
+                        children: [
+                          GestureDetector(
+                            child: Container(
+                                width: 210,
+                                padding: const EdgeInsets.all(5),
+                                color: Colors.white,
+                                alignment: Alignment.centerLeft,
+                                child: Text("Build Cloud Foundation")),
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          BuildCloudFoundation()));
+                            },
+                          ),
+                        ],
+                      ),
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => AdoptCloudUI()));
+                      },
+                    ),
                   ]),
-              _childExpansionTiles(
-                  context,
-                  "Operate in Cloud",
-                  // height: 9,
-                  [
-                    Text('Operate in Cloud', style: TextStyle(fontSize: 18)),
+            ),
+            Divider(
+              color: AppColor.lightGrey,
+            ),
+            Theme(
+              data:
+                  Theme.of(context).copyWith(dividerColor: Colors.transparent),
+              child: ExpansionTile(
+                  title: InkWell(
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => ServicePage()));
+                      },
+                      child: Text(
+                        'Insights',
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      )),
+                  trailing: Container(
+                      decoration: BoxDecoration(
+                          border: Border.all(color: AppColor.lightGrey)),
+                      child: Padding(
+                        padding: const EdgeInsets.all(5),
+                        child: Icon(
+                          Icons.arrow_forward_ios,
+                          size: 15,
+                        ),
+                      )),
+                  children: <Widget>[
+                    GestureDetector(
+                      child: ExpansionTile(
+                        title: Text('Adopt Cloud'),
+                        trailing: Container(
+                            decoration: BoxDecoration(
+                                border: Border.all(color: AppColor.lightGrey)),
+                            child: Padding(
+                              padding: const EdgeInsets.all(5),
+                              child: Icon(
+                                Icons.arrow_forward_ios,
+                                size: 15,
+                              ),
+                            )),
+                        children: [
+                          GestureDetector(
+                            child: Container(
+                                width: 210,
+                                padding: const EdgeInsets.all(5),
+                                color: Colors.white,
+                                alignment: Alignment.centerLeft,
+                                child: Text("Build Cloud Foundation")),
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          BuildCloudFoundation()));
+                            },
+                          ),
+                        ],
+                      ),
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => AdoptCloudUI()));
+                      },
+                    ),
                   ]),
-            ]),
+            ),
+            Divider(
+              color: AppColor.lightGrey,
+            ),
+            Theme(
+              data:
+                  Theme.of(context).copyWith(dividerColor: Colors.transparent),
+              child: ExpansionTile(
+                title: InkWell(
+                    onTap: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => Aboutus()));
+                    },
+                    child: Text(
+                      'About Us',
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    )),
+                trailing: const SizedBox(),
+              ),
+            ),
+            Divider(
+              color: AppColor.lightGrey,
+            ),
+            Theme(
+              data:
+                  Theme.of(context).copyWith(dividerColor: Colors.transparent),
+              child: ExpansionTile(
+                title: InkWell(
+                    onTap: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => Contactus()));
+                    },
+                    child: Text(
+                      'Contact Us',
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    )),
+                trailing: const SizedBox(),
+              ),
+            ),
+            Divider(
+              color: AppColor.lightGrey,
+            ),
+
+
           ]),
         ),
       ),
     );
   }
+}
 
-  Widget _expansionTiles(
-    BuildContext context,
-    String title,
-    List<Widget> expamsionList,
-  ) {
-    ThemeData theme = Theme.of(context);
-    return Theme(
-      data: theme.copyWith(
-        primaryIconTheme: theme.iconTheme.copyWith(color: AppColor.primary),
-        dividerColor: AppColor.lightBlue,
-      ),
-      child: ExpansionTile(
-        expandedAlignment: Alignment.centerLeft,
-        dense: true,
-        childrenPadding: const EdgeInsets.only(left: 20, right: 10),
-        tilePadding: const EdgeInsets.only(left: 2.0, right: 10),
-        expandedCrossAxisAlignment: CrossAxisAlignment.start,
-        textColor: Colors.black,
-        onExpansionChanged: (value) {},
-        // iconColor: AppColor.primary,trailing: Icon(Icons.arrow_circle_right_outlined),
-        title: Padding(
-          padding: const EdgeInsets.only(left: 10, bottom: 0),
-          child: Text(title,
-              style: TextStyle(
-                  fontSize: 18,
-                  height: .2,
-                  fontWeight: FontWeight.w800,
-                  color: Colors.black)),
-        ),
-        children: expamsionList,
-      ),
+class CompaniesSliderWidget extends StatefulWidget {
+  const CompaniesSliderWidget({Key? key}) : super(key: key);
+
+  @override
+  State<CompaniesSliderWidget> createState() => _CompaniesSliderWidgetState();
+}
+
+class _CompaniesSliderWidgetState extends State<CompaniesSliderWidget> {
+  @override
+  Widget build(BuildContext context) {
+    return Container(color: Colors.white, child: companiesSlider(context));
+  }
+
+  List<Widget> carouselItems = [
+    Image.asset('assets/ACMEMinds-logo.png'),
+    Image.asset('assets/Idea-bridge-Logo.png'),
+    Image.asset('assets/LoadShare-Logo.png'),
+    Image.asset('assets/ParentPayGroup.png'),
+    Image.asset('assets/PlusInnovation-Logo.png'),
+    Image.asset('assets/SunPower-Logo.png'),
+    Image.asset('assets/Unique-Solutions.png'),
+    Image.asset('assets/VoniGo-Logo.png'),
+  ];
+  int _current = 1;
+
+  CarouselController controller = CarouselController();
+
+  Widget companiesSlider(BuildContext context) {
+    return CarouselSlider(
+      carouselController: controller,
+      items: carouselItems ?? List.empty(),
+      options: CarouselOptions(
+          height:
+              Responsive.isDesktop(context) || Responsive.isk4Desktop(context)
+                  ? 200.0
+                  : 200,
+          enlargeCenterPage: true,
+          autoPlay: true,
+          aspectRatio: 16 / 9,
+          autoPlayCurve: Curves.fastOutSlowIn,
+          enableInfiniteScroll: true,
+          autoPlayAnimationDuration: Duration(milliseconds: 800),
+          viewportFraction:
+              Responsive.isDesktop(context) || Responsive.isk4Desktop(context)
+                  ? 0.2
+                  : 0.5,
+          initialPage: 0,
+          onPageChanged: (index, reason) {
+            setState(() {
+              _current = index;
+            });
+          }),
+    );
+  }
+}
+
+class HoverMenuWidget extends StatefulWidget {
+  final Widget title;
+  final double? width;
+  final List<Widget> items;
+  final HoverMenuController? controller;
+
+  const HoverMenuWidget({
+    Key? key,
+    required this.title,
+    this.items = const [],
+    this.width,
+    this.controller,
+  }) : super(key: key);
+
+  @override
+  HoverMenuWidgetState createState() => HoverMenuWidgetState();
+}
+
+class HoverMenuWidgetState extends State<HoverMenuWidget> {
+  OverlayEntry? _overlayEntry;
+  final _focusNode = FocusNode();
+  bool _isHovered = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _focusNode.addListener(_onFocusChanged);
+
+    if (widget.controller != null) {
+      widget.controller?.currentState = this;
+    }
+  }
+
+  @override
+  void dispose() {
+    _focusNode.dispose();
+    super.dispose();
+  }
+
+  void _onFocusChanged() {
+    if (_focusNode.hasFocus) {
+      _overlayEntry = _createOverlayEntry();
+      Overlay.of(context).insert(_overlayEntry!);
+    } else {
+      _overlayEntry?.remove();
+      _removeOverlay();
+    }
+  }
+
+  void _removeOverlay() {
+    _isHovered = false;
+  }
+
+  void hideSubMenu() {
+    _focusNode.unfocus();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return TextButton(
+      focusNode: _focusNode,
+      onHover: (isHovered) {
+        if (isHovered && !_isHovered) {
+          _focusNode.requestFocus();
+          _isHovered = true;
+        }
+      },
+      onPressed: () {},
+      child: widget.title,
     );
   }
 
-  Widget _childExpansionTiles(
-    BuildContext context,
-    String title,
-    List<Widget> expamsionList,
-  ) {
-    ThemeData theme = Theme.of(context);
-    return Theme(
-      data: theme.copyWith(
-        primaryIconTheme: theme.iconTheme.copyWith(color: AppColor.primary),
-        dividerColor: AppColor.lightBlue,
-      ),
-      child: ExpansionTile(
-        expandedAlignment: Alignment.centerLeft,
-        dense: true,
-        childrenPadding: const EdgeInsets.only(left: 20, right: 10),
-        tilePadding: const EdgeInsets.only(left: 2.0, right: 10),
-        expandedCrossAxisAlignment: CrossAxisAlignment.start,
-        textColor: Colors.black,
-        onExpansionChanged: (value) {},
-        // iconColor: AppColor.primary,trailing: Icon(Icons.arrow_circle_right_outlined),
-        title: Padding(
-          padding: const EdgeInsets.only(left: 10, bottom: 0),
-          child: Text(title,
-              style: TextStyle(fontSize: 18, height: .2, color: Colors.black)),
-        ),
-        children: expamsionList,
+  OverlayEntry _createOverlayEntry() {
+    final renderBox = context.findRenderObject() as RenderBox;
+    final size = renderBox.size;
+    final offset = renderBox.localToGlobal(Offset.zero);
+
+    return OverlayEntry(
+      maintainState: true,
+      builder: (context) => Positioned(
+        left: offset.dx,
+        top: offset.dy + size.height,
+        width: widget.width ?? 200,
+        child: TextButton(
+            style: ButtonStyle(
+              shape: WidgetStateProperty.all<RoundedRectangleBorder>(
+                RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(2),
+                ),
+              ),
+              overlayColor:
+                  WidgetStateColor.resolveWith((states) => Colors.transparent),
+            ),
+            onPressed: () {},
+            onHover: (isHovered) {
+              if (isHovered && _isHovered) {
+                _focusNode.requestFocus();
+              } else {
+                _focusNode.unfocus();
+              }
+            },
+            child: ListView(
+                padding: EdgeInsets.zero,
+                shrinkWrap: true,
+                children: widget.items)),
       ),
     );
   }
 }
 
+class HoverMenuController {
+  HoverMenuWidgetState? currentState;
 
+  void hideSubMenu() {
+    currentState?.hideSubMenu();
+  }
+}
+
+Widget ServicesGrid(Widget icon, String title, String subTitle) {
+  return Container(
+      color: Colors.black,
+      width: 500,
+      padding: const EdgeInsets.all(20),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          icon,
+          SizedBox(
+            height: height * .01,
+          ),
+          Text(
+            title,
+            style: TextStyle(
+              fontSize: 25,
+              fontWeight: FontWeight.w900,
+              color: Colors.white,
+            ),
+          ),
+          SizedBox(
+            height: height * .01,
+          ),
+          Text(
+            subTitle,
+            style: TextStyle(
+              fontSize: 14,
+              color: Colors.white,
+            ),
+            overflow: TextOverflow.clip,
+            // maxLines: 4,
+          )
+        ],
+      ));
+}
+
+Widget howWorkWidget(String title, String subTitle) {
+  return ListTile(
+    leading: Container(
+        decoration: BoxDecoration(
+          shape: BoxShape.circle,
+          color: AppColor.lightGreen,
+        ),
+        padding: EdgeInsets.all(10),
+        child: Icon(
+          Icons.add,
+          color: AppColor.primary,
+        )),
+    title: Text(
+      title,
+      style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+    ),
+    subtitle: Text(subTitle,
+        style: TextStyle(fontSize: 16, color: AppColor.subHeadingColor)),
+  );
+}

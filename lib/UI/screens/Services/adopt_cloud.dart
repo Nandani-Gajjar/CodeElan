@@ -1,12 +1,11 @@
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:codeelan/UI/screens/contact-us.dart';
 import 'package:codeelan/Utils/app_colors.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-
 import '../../../DataObjects/TestimonialListData.dart';
 import '../../../Utils/Responsive.dart';
 import '../../../Utils/widgets.dart';
+import 'AdoptCloudCategories/BuildCloudFoundation.dart';
+import 'AdoptCloudCategories/CLoudMigration.dart';
 
 class AdoptCloudUI extends StatefulWidget {
   const AdoptCloudUI({Key? key}) : super(key: key);
@@ -120,7 +119,7 @@ class _AdoptCloudUIState extends State<AdoptCloudUI> {
             whyChoose(),
             testimonials(),
             testimonialSlider(),
-            slider()
+            CompaniesSliderWidget()
           ],
         ),
       ),
@@ -311,7 +310,7 @@ class _AdoptCloudUIState extends State<AdoptCloudUI> {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => Contactus()));
+                                builder: (context) => BuildCloudFoundation()));
                       },
                     ),
                   ],
@@ -365,7 +364,7 @@ class _AdoptCloudUIState extends State<AdoptCloudUI> {
                     "Learn More",
                     () {
                       Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => Contactus()));
+                          MaterialPageRoute(builder: (context) => BuildCloudFoundation()));
                     },
                   ),
                 ],
@@ -433,7 +432,7 @@ class _AdoptCloudUIState extends State<AdoptCloudUI> {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => Contactus()));
+                                builder: (context) => CloudMigration()));
                       },
                     ),
                   ],
@@ -487,7 +486,7 @@ class _AdoptCloudUIState extends State<AdoptCloudUI> {
                     "Learn More",
                     () {
                       Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => Contactus()));
+                          MaterialPageRoute(builder: (context) => CloudMigration()));
                     },
                   ),
                 ],
@@ -907,47 +906,6 @@ class _AdoptCloudUIState extends State<AdoptCloudUI> {
     );*/
   }
 
-  List<Widget> carouselItems = [
-    Image.asset('assets/ACMEMinds-logo.png'),
-    Image.asset('assets/Idea-bridge-Logo.png'),
-    Image.asset('assets/LoadShare-Logo.png'),
-    Image.asset('assets/ParentPayGroup.png'),
-    Image.asset('assets/PlusInnovation-Logo.png'),
-    Image.asset('assets/SunPower-Logo.png'),
-    Image.asset('assets/Unique-Solutions.png'),
-    Image.asset('assets/VoniGo-Logo.png'),
-  ];
-  int _current = 0;
-
-  CarouselController controller = CarouselController();
-
-  Widget slider() {
-    return CarouselSlider(
-      carouselController: controller,
-      items: carouselItems ?? List.empty(),
-      options: CarouselOptions(
-          height:
-              Responsive.isDesktop(context) || Responsive.isk4Desktop(context)
-                  ? 200.0
-                  : 200,
-          enlargeCenterPage: true,
-          autoPlay: true,
-          aspectRatio: 16 / 9,
-          autoPlayCurve: Curves.fastOutSlowIn,
-          enableInfiniteScroll: true,
-          autoPlayAnimationDuration: Duration(milliseconds: 800),
-          viewportFraction:
-              Responsive.isDesktop(context) || Responsive.isk4Desktop(context)
-                  ? 0.2
-                  : 0.5,
-          initialPage: 0,
-          onPageChanged: (index, reason) {
-            setState(() {
-              _current = index;
-            });
-          }),
-    );
-  }
 
   Widget blueButton(BuildContext context, String text, Function() onTap) {
     return Container(
